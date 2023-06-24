@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Scroller;
-
 import androidx.annotation.ColorRes;
 import androidx.annotation.FloatRange;
 import androidx.core.content.ContextCompat;
@@ -38,9 +37,9 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
   //slide
   private Scroller mScroller;
   private int mLastX;
-  private int mLastXIntercept;//为了处理滑动冲突
-  private int mLastYIntercept;//为了处理滑动冲突
-  private int mDx;//滑动的距离，在手指抬起时清空
+  private int mLastXIntercept;//To handle sliding conflicts
+  private int mLastYIntercept;//To handle sliding conflicts
+  private int mDx;//The distance of the swipe, cleared when the finger is lifted
   private boolean mTriggerSlideLeft;
   private boolean mTriggerSlideRight;
   //ui
@@ -60,15 +59,12 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
     super(context, attrs, defStyleAttr);
     screenWidth = getScreenWidth(context);
     screenHeight = getScreenHeight(context);
-    initAttrs(attrs);//初始化属性
+    initAttrs(attrs);//initialize properties
     initContentShadowPaint();
     mScroller = new Scroller(context);
-
   }
 
-  /**
-   * 获取手机屏幕的高度
-   */
+  //Get the height of the phone screen
   static int getScreenHeight(Context context) {
     DisplayMetrics metrics = new DisplayMetrics();
     WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -76,9 +72,7 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
     return metrics.heightPixels;
   }
 
-  /**
-   * 获取手机屏幕的宽度
-   */
+  //Get the width of the phone screen
   static int getScreenWidth(Context context) {
     DisplayMetrics metrics = new DisplayMetrics();
     WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -86,18 +80,14 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
     return metrics.widthPixels;
   }
 
-  /**
-   * 初始化ContentView的阴影画笔
-   */
+
+   // Initialize the shadow brush of ContentView
   private void initContentShadowPaint() {
     mContentShadowPaint = new Paint();
-    mContentShadowPaint.setColor(mContentShadowColor);//给画笔设置透明度变化的颜色
-    mContentShadowPaint.setStyle(Paint.Style.FILL);//设置画笔类型填充
+    mContentShadowPaint.setColor(mContentShadowColor);//הגדר את צבע שינוי השקיפות עבור המברשת
+    mContentShadowPaint.setStyle(Paint.Style.FILL);//הגדר מילוי מסוג מברשת
   }
 
-  /**
-   * 初始化属性
-   */
   private void initAttrs(AttributeSet attrs) {
     TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.SlideMenuLayout);
     mSlideMode = ta.getInteger(R.styleable.SlideMenuLayout_slideMode, SLIDE_MODE_NONE);
@@ -146,7 +136,7 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
 
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    //默认全屏
+    //full screen by default
     int widthMode = MeasureSpec.getMode(widthMeasureSpec);
     int widthSize = MeasureSpec.getSize(widthMeasureSpec);
     int widthResult = 0;
@@ -163,7 +153,7 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
     } else {
       heightResult = screenHeight;
     }
-    //初始化侧滑菜单
+    //Initialize the menu
     initSlideView(widthResult, heightResult);
 
     measureSlideChild(mContentView, widthMeasureSpec, heightMeasureSpec);
@@ -243,8 +233,8 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
           } else if (mTriggerSlideRight) {
             intercept = x < mSlidePadding;
           } else {
-            //当手指在边缘地区的时候拦截事件
-            //以下判断条件主要为了区分边界滑动
+          //Intercept events when finger is on edge
+          //The following judgment conditions are mainly to distinguish boundary sliding
             if (mSlideMode == SLIDE_MODE_LEFT && deltaX > 0) {//左滑
               intercept = x <= mSlidePadding / 2;
             } else if (mSlideMode == SLIDE_MODE_RIGHT && deltaX < 0) {//右滑
@@ -262,7 +252,7 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
         break;
       case MotionEvent.ACTION_UP:
 //                intercept = false;
-        //点击ContentView后关闭侧滑菜单
+//Close the side-sliding menu after clicking the ContentView
         intercept = touchContentViewToCloseSlide();
         break;
     }
@@ -294,7 +284,7 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
         break;
       case MotionEvent.ACTION_UP:
       case MotionEvent.ACTION_CANCEL:
-        if (mDx > 0) {//右滑
+        if (mDx > 0) {//Swipe right
           inertiaScrollRight();
         } else {
           inertiaScrollLeft();
@@ -306,13 +296,13 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
   }
 
   /**
-   * 点击ContentView后关闭侧滑菜单
+   * Close the side-sliding menu after clicking the ContentView
    */
   private boolean touchContentViewToCloseSlide() {
     if (!mContentToggle) return false;
     if (Math.abs(getScrollX()) < mSlideWidth) return false;
     int dX = getScrollX();
-    if (dX < 0) {//左滑菜单打开
+    if (dX < 0) {//Swipe left to open the menu
       if (mLastX > mSlideWidth) {
         closeLeftSlide();
       } else {
@@ -329,7 +319,7 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
   }
 
   /**
-   * 惯性左滑
+   * Left slide
    */
   private void inertiaScrollLeft() {
     if (mSlideMode == SLIDE_MODE_RIGHT) {
@@ -349,7 +339,7 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
         }
       }
     } else if (mSlideMode == SLIDE_MODE_LEFT_RIGHT) {
-      if (!mTriggerSlideLeft && !mTriggerSlideRight) {//左右滑动菜单都关闭状态
+      if (!mTriggerSlideLeft && !mTriggerSlideRight) {//left and right slide the menu
         if (getScrollX() >= mSlideWidth / 2) {
           openRightSlide();
         } else {
@@ -366,7 +356,7 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
   }
 
   /**
-   * 惯性右滑
+   * right side
    */
   private void inertiaScrollRight() {
     if (mSlideMode == SLIDE_MODE_LEFT) {
@@ -403,25 +393,25 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
   }
 
   /**
-   * 向左滑动
+   * swipe left
    */
   private void scrollLeft(int dx) {
     if (mSlideMode == SLIDE_MODE_RIGHT) {
-      //右滑菜单已经打开，不做操作
+      //The right slide menu is already open, no operation
       if (mTriggerSlideRight || getScrollX() - dx >= mSlideWidth) {
         openRightSlide();
         return;
       }
       rightMenuParallax();
     } else if (mSlideMode == SLIDE_MODE_LEFT) {
-      //左滑菜单未打开，不做操作
+      //The left slide menu is not opened, no operation
       if (!mTriggerSlideLeft || getScrollX() - dx >= 0) {
         closeLeftSlide();
         return;
       }
       leftMenuParallax();
     } else if (mSlideMode == SLIDE_MODE_LEFT_RIGHT) {
-      //右滑菜单已经打开，不做操作
+      //The right slide menu is already open, no operation
       if (mTriggerSlideRight || getScrollX() - dx >= mSlideWidth) {
         openRightSlide();
         return;
@@ -434,25 +424,25 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
   }
 
   /**
-   * 向右滑动
+   * swipe right
    */
   private void scrollRight(int dx) {
     if (mSlideMode == SLIDE_MODE_LEFT) {
-      //左滑菜单已经打开，不做操作
+      //The left slide menu is already open, no operation
       if (mTriggerSlideLeft || getScrollX() - dx <= -mSlideWidth) {
         openLeftSlide();
         return;
       }
       leftMenuParallax();
     } else if (mSlideMode == SLIDE_MODE_RIGHT) {
-      //右滑菜单未打开，不做操作
+      //The right slide menu is not opened, no operation
       if (!mTriggerSlideRight || getScrollX() - dx <= 0) {
         closeRightSlide();
         return;
       }
       rightMenuParallax();
     } else if (mSlideMode == SLIDE_MODE_LEFT_RIGHT) {
-      //左滑菜单已经打开，不做操作
+      //The left slide menu is already open, no operation
       if (mTriggerSlideLeft || getScrollX() - dx <= -mSlideWidth) {
         openLeftSlide();
         return;
@@ -465,26 +455,14 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
   }
 
   /**
-   * 改变ContentView的透明度
+   * Change the transparency of ContentView
    */
   private void changeContentViewAlpha() {
-        /*int rX = Math.abs(getScrollX());
-        float alpha = 1.0f;
-        if (rX == 0) {
-            alpha = 1.0f;
-        } else if (rX == mSlideWidth) {
-            alpha = mContentAlpha;
-        } else {
-            alpha = Math.abs(1.0f - ((1.0f - mContentAlpha) / mSlideWidth) * rX);
-        }
-        alpha = alpha < 0.1f ? 0.1f : alpha;
-        alpha = alpha > 1.0f ? 1.0f : alpha;
-        mContentView.setAlpha(alpha);*/
     postInvalidate();
   }
 
   /**
-   * 右滑菜单的视差效果
+   * Parallax effect for right slide menu
    */
   private void rightMenuParallax() {
     if (!mParallax) return;
@@ -497,7 +475,7 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
   }
 
   /**
-   * 左滑菜单的视差效果
+   * Parallax effect for left slide menu
    */
   private void leftMenuParallax() {
     if (!mParallax) return;
@@ -510,7 +488,7 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
   }
 
   /**
-   * 缓慢滑动
+   * slide slowly
    */
   private void smoothScrollTo(int destX, int destY) {
     int scrollX = getScrollX();
@@ -532,7 +510,7 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
   }
 
   /**
-   * 测量子视图
+   * Measure Subview
    */
   private void measureSlideChild(View childView, int widthMeasureSpec, int heightMeasureSpec) {
     if (childView == null) return;
@@ -545,7 +523,7 @@ public class SlideMenuLayout extends ViewGroup implements SlideMenuAction {
   }
 
   /**
-   * 初始化SlideMenu的视图
+   * Initialize SlideMenu's view
    */
   private void initSlideView(int widthResult, int heightResult) {
     if (getChildCount() == 0) {

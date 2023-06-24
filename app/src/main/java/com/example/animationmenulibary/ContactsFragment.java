@@ -28,8 +28,8 @@ public class ContactsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.frg_friend, container, false);
         RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.ff_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
-        FriendAdapter friendAdapter = new FriendAdapter(mContext);
-        recyclerView.setAdapter(friendAdapter);
+        ContactsAdapter contactsAdapter = new ContactsAdapter(mContext);
+        recyclerView.setAdapter(contactsAdapter);
         return rootView;
     }
 

@@ -8,11 +8,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder> {
+public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHolder> {
 
     private Context context;
 
-    public FriendAdapter(Context context) {
+    public ContactsAdapter(Context context) {
         this.context = context;
     }
 

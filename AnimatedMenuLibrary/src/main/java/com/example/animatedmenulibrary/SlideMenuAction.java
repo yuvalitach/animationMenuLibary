@@ -1,11 +1,9 @@
 package com.example.animatedmenulibrary;
 
 import android.view.View;
-
 import androidx.annotation.ColorRes;
 import androidx.annotation.FloatRange;
 import androidx.annotation.IntDef;
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -29,127 +27,125 @@ public interface SlideMenuAction {
   void setSlideMode(@SlideMode int slideMode);
 
   /**
-   * 设置侧滑菜单打开时候距离主视图的padding
+   * הגדרת המרחק  מהתצוגה הראשית כאשר תפריט ההזזה הצידי נפתח
    *
-   * @param slidePadding 单位px
+   * @param slidePadding pixels
    */
   void setSlidePadding(int slidePadding);
 
   /**
-   * 设置滑动菜单打开的时间
+   * Set the time for the sliding menu to open
    *
    * @param slideTime 单位ms
    */
   void setSlideTime(int slideTime);
 
   /**
-   * 设置视差效果开关
+   * Set parallax effect switch
    *
-   * @param parallax 视差效果开关，Default:true
+   * @param parallax Parallax effect switch，Default:true
    */
   void setParallaxSwitch(boolean parallax);
 
   /**
-   * 设置在侧滑菜单打开时候的ContentView的透明度，该值会在侧滑的时候不断变化，从1.0变化至设置的值.
+   * Set the transparency of the ContentView when the side menu is opened，This value will change continuously when sliding，Varies from 1.0 to set value.
    *
-   * @param contentAlpha 0<contentAlpha<=1.0，值为1.0时表示侧滑时候ContentView无透明度变化.
+   * @param contentAlpha 0<contentAlpha<=1.0，A value of 1.0 means that the ContentView has no transparency change when sliding sideways.
    *                     Default:0.5
    */
   void setContentAlpha(@FloatRange(from = 0f, to = 1.0f) float contentAlpha);
 
   /**
-   * 设置ContentView在滑动过程中的阴影颜色
+   * Set the shadow color of ContentView during sliding
    *
-   * @param color 颜色，默认色值：#000000
+   * @param color color, default color value：#000000
    */
   void setContentShadowColor(@ColorRes int color);
 
   /**
-   * 设置ContentView是否在侧滑菜单打开时候点击关闭侧滑菜单.
+   * Set whether the ContentView clicks to close the side-sliding menu when the side-sliding menu is open.
    *
    * @param contentToggle Default:false
    */
   void setContentToggle(boolean contentToggle);
 
   /**
-   * 设置是否运行拖动侧滑菜单
+   * Determine whether to enable the side menu
    *
    * @param allowTogging Default:true
    */
   void setAllowTogging(boolean allowTogging);
 
   /**
-   * 返回左侧滑视图
+   * Return to the left side view
    *
    * @return {@link View}
    */
   View getSlideLeftView();
 
   /**
-   * 返回右侧滑视图
+   * Return to the right side
    *
    * @return {@link View}
    */
   View getSlideRightView();
 
   /**
-   * 返回侧滑主体视图
+   * Return to the main view
    *
    * @return {@link View}
    */
   View getSlideContentView();
 
   /**
-   * 打开/关闭左侧滑菜单
+   * Open/close the left side menu
    */
   void toggleLeftSlide();
 
   /**
-   * 打开左侧滑菜单
+   * Open the left menu
    */
   void openLeftSlide();
 
   /**
-   * 关闭左侧滑菜单
+   * Close the left side menu
    */
   void closeLeftSlide();
 
   /**
-   * 左侧滑菜单是否打开
+   * Whether the left sliding menu is open
    */
   boolean isLeftSlideOpen();
 
   /**
-   * 打开/关闭右侧滑菜单
+   * Open/close right slide menu
    */
   void toggleRightSlide();
 
   /**
-   * 打开右滑菜单
+   * Open right slide menu
    */
   void openRightSlide();
 
   /**
-   * 关闭右侧滑菜单
+   * Close right slide menu
    */
   void closeRightSlide();
 
   /**
-   * 右侧滑菜单是否打开
+   * Whether the right slide menu is open
    */
   boolean isRightSlideOpen();
 
   /**
-   * 设置侧滑菜单变化的监听器
+   * Set the listener for side menu changes
    *
    * @param listener {@link OnSlideChangedListener}
    */
   void addOnSlideChangedListener(OnSlideChangedListener listener);
 
   /**
-   * Slide Mode.（滑动模式）
-   *
-   * @hide
+   * Slide Mode
    */
   @IntDef({SLIDE_MODE_LEFT, SLIDE_MODE_RIGHT, SLIDE_MODE_LEFT_RIGHT, SLIDE_MODE_NONE})
   @Retention(RetentionPolicy.SOURCE)
