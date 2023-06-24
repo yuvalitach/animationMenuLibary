@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--ערכות נושא לשורת המצב הסוחפת-->
+    <style name="ImmersiveStatusStyle">
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:clipToPadding">true</item>
+    </style>
+    <!--סגנון שורת הכותרת-->
+    <style name="TitleStyle">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <!--סגנון שורת כותרת עם שורת מצב סוחפת-->
+    <style name="TitleStyle.StatusBar" parent="ImmersiveStatusStyle">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+</resources>
