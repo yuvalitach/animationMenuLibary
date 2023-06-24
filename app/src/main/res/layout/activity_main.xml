@@ -30,7 +30,8 @@
 
         <androidx.appcompat.widget.Toolbar
             style="@style/TitleStyle.StatusBar"
-            android:background="@color/purple_500"
+
+            android:background="#230e58	"
             app:contentInsetStart="0dp">
 
       <RelativeLayout
@@ -74,13 +75,13 @@
         android:id="@+id/am_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/design_default_color_secondary"
+        android:background="@color/white"
         app:tabGravity="fill"
-        app:tabIndicatorColor="@color/purple_500"
+        app:tabIndicatorColor="#230e58"
         app:tabIndicatorHeight="2.5dp"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/purple_500"
-        app:tabTextColor="@color/white"/>
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextColor="#230e58"/>
 
 
       <androidx.viewpager.widget.ViewPager
@@ -88,7 +89,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/design_default_color_secondary"/>
+        android:background="#cdc9d1"/>
     </LinearLayout>
 
   </com.example.animatedmenulibrary.SlideMenuLayout>

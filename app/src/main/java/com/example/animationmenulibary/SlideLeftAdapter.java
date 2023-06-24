@@ -17,7 +17,7 @@ public class SlideLeftAdapter extends RecyclerView.Adapter<SlideLeftAdapter.View
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_friend, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_contacts, parent, false);
         return new ViewHolder(view);
     }
 

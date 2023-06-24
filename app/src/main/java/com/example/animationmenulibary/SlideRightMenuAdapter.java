@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 public class SlideRightMenuAdapter extends FragmentPagerAdapter {
 
     private String[] menuNames = new String[]{
-            "chat", "friend"
+            "chat", "contacts"
     };
 
     public SlideRightMenuAdapter(FragmentManager fm) {
@@ -18,7 +18,7 @@ public class SlideRightMenuAdapter extends FragmentPagerAdapter {
         if (position == 0) {
             return ChatFragment.newInstance();
         } else {
-            return FriendFragment.newInstance();
+            return ContactsFragment.newInstance();
         }
     }
 

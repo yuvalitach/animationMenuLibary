@@ -10,11 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FriendFragment extends Fragment {
+public class ContactsFragment extends Fragment {
 
-    public static FriendFragment newInstance() {
+    public static ContactsFragment newInstance() {
         Bundle args = new Bundle();
-        FriendFragment fragment = new FriendFragment();
+        ContactsFragment fragment = new ContactsFragment();
         fragment.setArguments(args);
         return fragment;
     }

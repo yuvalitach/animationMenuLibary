@@ -3,7 +3,7 @@
     style="@style/ImmersiveStatusStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_200"
+    android:background="#aca0ca"
     android:orientation="vertical">
 
     <TextView
@@ -12,7 +12,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:text="all match"
+        android:text="Header"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="17sp" />
 
@@ -21,12 +22,12 @@
         android:id="@+id/fmr_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/design_default_color_error"
+        android:background="#cdc9d1"
         app:tabGravity="fill"
-        app:tabIndicatorColor="@color/purple_500"
+        app:tabIndicatorColor="#504086"
         app:tabIndicatorHeight="2.5dp"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/white"
+        app:tabSelectedTextColor="#504086"
         app:tabTextColor="@color/white" />
 
 
