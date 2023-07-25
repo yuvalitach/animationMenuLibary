@@ -16,7 +16,7 @@
 <p dir="auto">Add the dependency below to your module's <code>build.gradle</code> file:</p>
 <p></p>
 <pre><span class="pl-en">dependencies</span> {
-    implementation <span class="pl-s"><span class="pl-pds">'</span>com.github.yuvalitach:ZoomInSplashLibary:1.0<span class="pl-pds">'</span></span>
+    implementation <span class="pl-s"><span class="pl-pds">'</span>'com.github.yuvalitach:animationMenuLibary:-SNAPSHOT'<span class="pl-pds">'</span></span>
 }</pre>
 
 <p dir="auto">Add a repository in your <code>settings.gradle</code> file:</p>
