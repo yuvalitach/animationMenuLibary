@@ -5,12 +5,12 @@
   <a href="https://github.com/yuvalitach"><img alt="Profile" src="https://badgen.net/badge/Github/yuvalitach/green?icon=github"/></a>
 </p>
 
-## An Android View library. You can customize awesome Opening screen for your application using animation
+## AnimationMenuLibary is a powerful and customizable Android library that allows developers to effortlessly create stylish menus with tabs and slides, enhancing user navigation and experience.
 
-### When downloading the library, you can access customize opening screen to your applicationan.
-#### -Update your logo.
-#### -Update background.
-#### -Update your animation.
+
+### When downloading the library, you can access customize awsome menu to your applicationan.
+#### - Decide on shifts
+#### - Decide on the animations
 
 <h3>Gradle</h3>
 <p dir="auto">Add the dependency below to your module's <code>build.gradle</code> file:</p>
